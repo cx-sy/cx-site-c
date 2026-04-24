@@ -111,7 +111,7 @@ textarea { resize: none; }
   color: #fff;
 }
 .contact-inquiry-section {
-  margin-top: calc(var(--text-3) * 1.65 * 5 + 16px); /* ≈ about text block height (축소 반영) */
+  margin-top: calc(var(--text-3) * 1.65 * 3 + 16px);
   border-top: 0.5px solid #fff;
   padding-top: 6px;
 }
@@ -119,6 +119,12 @@ textarea { resize: none; }
   margin: 0 0 16px 0;
   font-size: 20px; line-height: 1.08; font-weight: 400;
   color: #fff;
+}
+
+.contact-guide {
+  margin: 0 0 20px 0;
+  font-size: calc(var(--text-3) * 1.1); line-height: 1.65;
+  color: #aaa;
 }
 .contact-form { display: flex; flex-direction: column; gap: 0; }
 .form-group {
@@ -370,6 +376,15 @@ textarea { resize: none; }
 .detail-img--vertical { aspect-ratio: 4 / 5; }
 .detail-img--medium { aspect-ratio: 3 / 2; }
 
+.detail-description {
+  padding: 60px 40px 80px 40px;
+  font-size: calc(var(--text-3) * 1.1); line-height: 1.75;
+  color: #555;
+  max-width: 720px;
+}
+.detail-description p { margin: 0 0 16px 0; }
+.detail-description p:last-child { margin-bottom: 0; }
+
 /* ── HAMBURGER ── */
 .hamburger {
   display: none; flex-direction: column; justify-content: center; gap: 5px;
@@ -432,7 +447,14 @@ textarea { resize: none; }
 @media (max-width: 767px) {
   :root { --title-main: 20px; --title-open: 14px; --detail-title: 20px; }
   .brand svg { height: 14px; }
-  .site-header__inner { padding: 8px var(--gap); }
+  .site-header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+  }
+  .brand { padding-left: 0; }
+  .header-nav { padding-left: 0; gap: 20px; }
   .header-nav { gap: 20px; }
   .header-label { font-size: 10px; }
   .project-row { grid-template-columns: 1fr !important; min-height: 280px; }
@@ -567,14 +589,17 @@ body.cursor-over-input .cursor-dot { opacity: 0; }
       </div>
     </section>
     <aside class="contact-column" id="contactColumn">
-      <div class="contact-about">
-        씨엑스의 성과물은<br>
-        탄탄한 기획력과 논리를 바탕으로 보이는 것<br>
-        이상의 의미와 가치를 담고자 합니다.<br>
-        우리가 만들어낸 결과물이 본래의 취지에 맞게,<br>
-        고객사에게 최고의 기여를 할 수 있도록<br>
-        보이지 않는 디테일까지 최선을 다합니다.
-      </div>
+      <p class="contact-guide">
+        CX는 Context eXperience의 이니셜입니다.<br>
+        좋은 경험은 의미와 가치가 연결되는 맥락에서 시작됩니다.<br>
+        CX는 브랜드가 놓인 환경을 읽고,<br>
+        전달해야 할 이야기와 구조를 디자인합니다.<br>
+        기획의 논리, 메시지의 밀도, 디테일과 아름다움이<br>
+        하나의 경험으로 이어질 수 있도록<br>
+        상상하고 실험하며 구현합니다.<br><br>
+        프로젝트 문의는 아래 폼을 통해 남겨주세요.<br>
+        확인 후 연락드리겠습니다.
+      </p>
       <div class="contact-inquiry-section">
         <h2 class="contact-heading">프로젝트 문의</h2>
         <form class="contact-form" id="contactForm">
@@ -604,14 +629,17 @@ body.cursor-over-input .cursor-dot { opacity: 0; }
 <!-- Mobile: contact overlay -->
 <div class="mobile-contact-overlay" id="mobileContactOverlay">
   <button class="mobile-contact-close" id="mobileContactClose"></button>
-  <div class="contact-about" style="margin-bottom:20px;">
-    씨엑스의 성과물은<br>
-    탄탄한 기획력과 논리를 바탕으로 보이는 것<br>
-    이상의 의미와 가치를 담고자 합니다.<br>
-    우리가 만들어낸 결과물이 본래의 취지에 맞게,<br>
-    고객사에게 최고의 기여를 할 수 있도록<br>
-    보이지 않는 디테일까지 최선을 다합니다.
-  </div>
+  <p class="contact-guide" style="margin-bottom:20px;">
+    CX는 Context eXperience의 이니셜입니다.<br>
+    좋은 경험은 의미와 가치가 연결되는 맥락에서 시작됩니다.<br>
+    CX는 브랜드가 놓인 환경을 읽고,<br>
+    전달해야 할 이야기와 구조를 디자인합니다.<br>
+    기획의 논리, 메시지의 밀도, 디테일과 아름다움이<br>
+    하나의 경험으로 이어질 수 있도록<br>
+    상상하고 실험하며 구현합니다.<br><br>
+    프로젝트 문의는 아래 폼을 통해 남겨주세요.<br>
+    확인 후 연락드리겠습니다.
+  </p>
   <div class="contact-inquiry-section" style="margin-top:0;">
     <h2 class="contact-heading">프로젝트 문의</h2>
     <form class="contact-form">
@@ -1007,6 +1035,10 @@ function renderDetail() {
       </div>
       <div class="detail-img detail-img--medium" style="background:${p.colors[4]}"></div>
       <div class="detail-img detail-img--wide" style="background:${p.colors[5]}"></div>
+    </div>
+    <div class="detail-description">
+      <p>본 프로젝트는 브랜드가 놓인 환경과 전달해야 할 메시지를 바탕으로 설계된 시각 경험입니다. CX는 기획 초기부터 결과물까지 함께하며, 브랜드 고유의 맥락을 시각 언어로 풀어냈습니다.</p>
+      <p>각 접점에서 경험의 밀도가 유지되도록 구조와 디테일을 조율했고, 결과물은 브랜드의 본래 취지가 자연스럽게 전달되도록 다듬었습니다. 이 문단은 더미 텍스트이며, 프로젝트별로 맞는 설명으로 교체해 주세요.</p>
     </div>
   `;
 }
