@@ -59,7 +59,7 @@ textarea { resize: none; }
 .site-header {
   flex: 0 0 auto;
   background: #000;
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid #fff;
 }
 .site-header__inner {
   display: grid;
@@ -95,12 +95,12 @@ textarea { resize: none; }
 /* ── DETAIL COLUMN ── */
 .detail-column { display: none; height: 100%; min-height: 0; overflow: hidden; background: #fff; }
 .layout.is-open .detail-column {
-  display: flex; flex-direction: column; border-left: 1px solid #555;
+  display: flex; flex-direction: column; border-left: 1px solid #fff;
 }
 
 /* ── CONTACT COLUMN ── */
 .contact-column {
-  border-left: 1px solid #555;
+  border-left: 1px solid #fff;
   padding: 16px 16px 16px 20px;
   height: 100%; min-height: 0; overflow-y: auto;
   display: flex; flex-direction: column;
@@ -112,7 +112,7 @@ textarea { resize: none; }
 }
 .contact-inquiry-section {
   margin-top: calc(var(--text-3) * 1.65 * 5 + 16px); /* ≈ about text block height (축소 반영) */
-  border-top: 1px solid #555;
+  border-top: 1px solid #fff;
   padding-top: 6px;
 }
 .contact-heading {
@@ -122,7 +122,7 @@ textarea { resize: none; }
 }
 .contact-form { display: flex; flex-direction: column; gap: 0; }
 .form-group {
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid #fff;
   padding: 10px 0;
 }
 .form-group:first-child { border-top: none; }
@@ -156,7 +156,7 @@ textarea { resize: none; }
 
 .project-item {
   display: block; width: 100%; text-align: left;
-  border-top: 1px solid #555;
+  border-top: 1px solid #fff;
   padding: 0;
   overflow: hidden; /* clip scaled thumb on hover */
   transition: background 180ms ease, color 180ms ease;
@@ -418,13 +418,13 @@ textarea { resize: none; }
   .layout, .layout.is-open { grid-template-columns: 1fr; height: auto; }
   .index-column, .detail-column, .contact-column { height: auto; overflow: visible; }
   .layout.is-open .detail-column {
-    display: flex; border-top: 1px solid #555; border-left: 0;
+    display: flex; border-top: 1px solid #fff; border-left: 0;
   }
   .layout.is-open .project-row { grid-template-columns: 1fr; }
   .layout.is-open .project-thumb { display: none; }
   .detail-header { position: static; }
   .detail-scroll { overflow: visible; padding-bottom: 0; }
-  .contact-column { border-top: 1px solid #555; border-left: 0; }
+  .contact-column { border-top: 1px solid #fff; border-left: 0; }
   .project-row { grid-template-columns: 1fr 40vw; }
 }
 
