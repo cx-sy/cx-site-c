@@ -1,0 +1,10 @@
+Title:   Samsung Compressor 2025 Product Catalogue
+Period:  2025-01
+Year:    2025
+Client:  Samsung Electronics
+Tags:    Product Catalogue, Editorial Design, Art Direction
+
+Source (원본 프로젝트 폴더):
+  JOB_CX_ing/삼성/20250123_SamsungCompressorCatalogue/2025_SamsungCompressorCatalogue_FIN
+
+Source folder name: 20250123_SamsungCompressorCatalogue

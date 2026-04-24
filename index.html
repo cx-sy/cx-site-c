@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CX Works — Type C (Black)</title>
+<style>
+@font-face {
+  font-family: 'CXBaseFont';
+  src: url('./public/fonts/ABC Whyte Hangul Inktrap Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'CXBoldFont';
+  src: url('./public/fonts/ABC Whyte Hangul Inktrap Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'CXBookFont';
+  src: url('./public/fonts/ABC Whyte Hangul Inktrap Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --line: 1px solid #000;
+  --gap: 10px;
+  --text-1: 11px;
+  --text-2: 13px;
+  --text-3: 14px;
+  --title-main: 22px;
+  --title-open: 15px;
+  --detail-title: 36px;
+  --col-fifth: 384px;
+  --col-thumb: 444px;
+  --contact-bg: #F2F2F2;
+}
+
+* { box-sizing: border-box; }
+::-webkit-scrollbar { display: none; }
+* { scrollbar-width: none; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: var(--black); color: var(--black);
+  font-family: 'CXBaseFont', Arial, Helvetica, sans-serif;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+button, input, textarea { font: inherit; color: inherit; }
+button { background: none; border: 0; padding: 0; margin: 0; cursor: pointer; }
+textarea { resize: none; }
+
+/* ── HEADER ── */
+.site-header {
+  flex: 0 0 auto;
+  background: #000;
+  border-bottom: 1px solid #555;
+}
+.site-header__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--col-fifth);
+  align-items: center;
+  padding: 12px 0;
+}
+.brand { display: flex; align-items: center; padding-left: 20px; }
+.brand svg { height: 24px; width: auto; display: block; fill: #fff; }
+.header-nav { display: flex; align-items: center; gap: 100px; padding-left: 20px; }
+.header-label { font-size: 12px; line-height: 1; font-weight: 400; text-transform: uppercase; letter-spacing: 0.02em; }
+.header-label a { color: #fff; text-decoration: none; }
+.header-label a:hover { opacity: 0.5; }
+
+/* ── MAIN ── */
+.site-main { flex: 1 1 0; min-height: 0; overflow: hidden; }
+
+/* ── LAYOUT ── */
+.layout {
+  display: grid; gap: 0;
+  grid-template-columns: minmax(0, 1fr) var(--col-fifth);
+  height: 100%; min-height: 0; max-height: 100%;
+}
+.layout.is-open {
+  grid-template-columns: var(--col-fifth) minmax(0, 1fr) var(--col-fifth);
+}
+
+/* ── INDEX COLUMN ── */
+.index-column {
+  height: 100%; min-height: 0; overflow-y: auto; padding-bottom: 24px;
+}
+
+/* ── DETAIL COLUMN ── */
+.detail-column { display: none; height: 100%; min-height: 0; overflow: hidden; background: #fff; }
+.layout.is-open .detail-column {
+  display: flex; flex-direction: column; border-left: 1px solid #555;
+}
+
+/* ── CONTACT COLUMN ── */
+.contact-column {
+  border-left: 1px solid #555;
+  padding: 16px 16px 16px 20px;
+  height: 100%; min-height: 0; overflow-y: auto;
+  display: flex; flex-direction: column;
+  background: #000;
+}
+.contact-about {
+  font-size: calc(var(--text-3) * 1.05); line-height: 1.65;
+  color: #fff;
+}
+.contact-inquiry-section {
+  margin-top: calc(var(--text-3) * 1.65 * 5 + 16px); /* ≈ about text block height (축소 반영) */
+  border-top: 1px solid #555;
+  padding-top: 6px;
+}
+.contact-heading {
+  margin: 0 0 16px 0;
+  font-size: 20px; line-height: 1.08; font-weight: 400;
+  color: #fff;
+}
+.contact-form { display: flex; flex-direction: column; gap: 0; }
+.form-group {
+  border-bottom: 1px solid #555;
+  padding: 10px 0;
+}
+.form-group:first-child { border-top: none; }
+.form-label {
+  display: block; font-size: var(--text-1); color: #fff;
+  margin-bottom: 4px; font-weight: 400;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%; border: none; border-radius: 0;
+  background: #333; color: #fff; padding: 10px 12px; outline: none;
+  font-size: var(--text-3); font-family: inherit;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: #999; }
+.form-group textarea { min-height: 100px; }
+.send-button {
+  display: block; width: 100%; text-align: center;
+  border: none; padding: 14px;
+  font-size: var(--text-3); line-height: 1; font-weight: 400;
+  margin-top: 12px; cursor: pointer;
+  background: #fff; color: #000;
+}
+.send-button:hover { opacity: 0.8; }
+.copyright {
+  font-size: var(--text-1); color: #fff; margin-top: auto; padding-top: 20px; text-align: left;
+}
+
+/* ── PROJECT LIST ── */
+.project-list { display: flex; flex-direction: column; }
+
+.project-item {
+  display: block; width: 100%; text-align: left;
+  border-top: 1px solid #555;
+  padding: 0;
+  overflow: hidden; /* clip scaled thumb on hover */
+  transition: background 180ms ease, color 180ms ease;
+}
+.project-item:first-child { border-top: 0; }
+
+/* Default: text | thumb (1/5 viewport) */
+.project-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--col-thumb);
+  gap: 0; align-items: stretch;
+  min-height: 130px;
+  position: relative;
+  transition: all 180ms ease;
+}
+
+.project-meta {
+  padding: var(--gap) var(--gap) var(--gap) 20px;
+  display: flex; flex-direction: column; gap: 6px;
+  justify-content: flex-start;
+  position: relative; z-index: 2;
+  background: transparent;
+  transition: background 180ms ease;
+}
+
+.project-thumb {
+  width: 100%; height: 100%; min-height: 130px;
+  overflow: hidden;
+  position: relative; z-index: 1;
+  background-color: transparent;
+  background-size: cover;
+  background-position: center;
+  transition: transform 400ms ease, filter 400ms ease, width 180ms ease, height 180ms ease;
+}
+
+/* ── Hover: image fills entire row, zoom + blur, text overlays on top ── */
+.project-item:hover .project-thumb,
+.project-item:active .project-thumb {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+  min-height: auto;
+  transform: scale(1.1);
+  filter: brightness(0.65);
+}
+.project-item:hover .project-meta {
+  background: transparent;
+  z-index: 2;
+}
+.project-item:hover .project-title {
+  color: #fff;
+}
+.project-item:hover .tag {
+  opacity: 0.9;
+}
+
+/* When detail is open: single column, no image */
+.layout.is-open .project-row {
+  grid-template-columns: 1fr;
+  min-height: auto;
+  height: 100%;
+}
+.layout.is-open .project-thumb { display: none; }
+/* Detail open: disable thumb zoom/blur (keep index hover clean black) */
+.layout.is-open .project-item:hover .project-thumb,
+.layout.is-open .project-item:active .project-thumb {
+  transform: none;
+  filter: none;
+}
+.layout.is-open .project-meta {
+  padding: 8px var(--gap) 8px 20px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* Detail open hover: entire item goes WHITE (블랙 버전 대비) */
+.layout.is-open .project-item:hover {
+  background: #fff;
+}
+.layout.is-open .project-item:hover .project-meta {
+  background: #fff;
+}
+.layout.is-open .project-item:hover .project-title {
+  color: #000;
+}
+
+/* Active item */
+.layout.is-open .project-item.is-active {
+  background: #fff;
+}
+.project-item.is-active .project-meta { background: #fff; }
+.project-item.is-active .project-title { color: #000; }
+.project-item.is-active .tag { opacity: 0.7; }
+
+/* Detail open: index 컬럼의 태그만 더 작고 더 딤드 (디테일 뷰 태그는 영향 없음) */
+.layout.is-open .project-item .tag {
+  font-size: 9px;
+  min-height: 14px;
+  padding: 1px 5px;
+  opacity: 0.35;
+}
+.layout.is-open .project-item.is-active .tag {
+  opacity: 0.5;
+}
+
+.project-title {
+  margin: 0; font-size: var(--title-main); line-height: 1.12; font-weight: 400;
+  color: #fff;
+  transition: color 180ms ease;
+}
+.layout.is-open .project-title { font-size: var(--title-open); line-height: 1.2; }
+
+/* ── TAGS — ALL text black, unique vibrant colors ── */
+.tag-list, .detail-tags { display: flex; flex-wrap: wrap; gap: 3px; }
+.tag {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 18px; padding: 2px 6px;
+  border-radius: 6px;
+  font-family: 'CXBookFont', 'CXBaseFont', Arial, Helvetica, sans-serif;
+  font-size: var(--text-1); line-height: 1;
+  white-space: nowrap;
+  transition: opacity 180ms ease;
+  border: 1px solid transparent;
+  color: #000;
+}
+/* ── TAG PALETTE — CX Portfolio v1 (33 tags, 3-tier) ── */
+/* Tier 1 — Signature (5+) */
+.tag--art-direction { background: #CCFF00; }
+.tag--editorial-design { background: #FF00FF; color: #fff; }
+.tag--copywriting { background: #B388FF; }
+.tag--graphic-design { background: #0000FE; color: #fff; }
+.tag--deck { background: #00E5FF; }
+.tag--branded-film { background: #FF4500; color: #fff; }
+.tag--branded-photography { background: #00E5A0; }
+.tag--narrative { background: #FFCC00; }
+.tag--creative-direction { background: #40C4FF; }
+/* Tier 2 — Distinct (2–4) */
+.tag--motion-graphic { background: #00FF00; }
+.tag--sustainability { background: #76FF03; }
+.tag--social-media-content { background: #FF4081; color: #fff; }
+.tag--keynote { background: #FFD600; }
+.tag--3d-graphic { background: #2979FF; }
+.tag--illustration { background: #FF8A65; }
+.tag--web-design { background: #00BCD4; }
+/* Tier 3A — Editorial / Print family (pink · magenta) */
+.tag--quarterly-magazine { background: #FF69B4; }
+.tag--inhouse-magazine { background: #FF80AB; }
+.tag--book-design { background: #FF1493; color: #fff; }
+.tag--art-anthology { background: #FF6EC7; }
+.tag--product-catalogue { background: #E040FB; }
+.tag--editorial-planning { background: #FFC0CB; }
+.tag--editing { background: #FFD1DC; }
+.tag--reporting { background: #FFB6C1; }
+.tag--print-webzine-production { background: #CE93D8; }
+/* Tier 3B — Brand System family (purple · lavender) */
+.tag--brand-identity { background: #7C4DFF; color: #fff; }
+.tag--verbal-identity { background: #9575CD; }
+.tag--visual-system { background: #B39DDB; }
+/* Tier 3C — Physical Production family (amber · gold) */
+.tag--merchandise { background: #FFAB00; }
+.tag--package-design { background: #FFB300; }
+.tag--production-management { background: #FFC107; }
+/* Tier 3D — Film extension (warm orange) */
+.tag--promotion-film { background: #FF6E40; }
+/* Tier 3E — Web extension (teal) */
+.tag--web-publishing { background: #00ACC1; }
+/* Fallback */
+.tag--default { background: #B388FF; }
+
+/* ── DETAIL ── */
+.detail-shell {
+  display: flex; flex-direction: column; flex: 1 1 0;
+  min-height: 0; position: relative; overflow: hidden;
+}
+.detail-header {
+  flex: 0 0 auto; padding: var(--gap);
+  position: relative;
+}
+.close-button {
+  position: absolute; top: var(--gap); right: var(--gap); z-index: 10;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px;
+  background: none; border: none; padding: 0; cursor: pointer;
+}
+.close-button::before, .close-button::after {
+  content: ''; position: absolute;
+  width: 22px; height: 1px; background: #000;
+  top: 50%; left: 50%;
+}
+.close-button::before { transform: translate(-50%, -50%) rotate(45deg); }
+.close-button::after { transform: translate(-50%, -50%) rotate(-45deg); }
+.close-button:hover { opacity: 0.5; }
+
+.detail-scroll {
+  flex: 1 1 0; min-height: 0; overflow-y: auto; padding-bottom: 24px;
+}
+.detail-title {
+  margin: 0; font-size: var(--detail-title); line-height: 1.12; font-weight: 400;
+  padding-right: 40px;
+}
+.detail-meta {
+  margin-top: 8px; font-size: var(--text-3); line-height: 1.4; color: #000;
+}
+.detail-tags { margin-top: 10px; }
+.detail-gallery { display: flex; flex-direction: column; gap: 0; }
+.detail-img { width: 100%; background: #ddd; }
+.detail-img--hero { aspect-ratio: 16 / 10; }
+.detail-img--wide { aspect-ratio: 16 / 9; }
+.detail-img--pair-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.detail-img--vertical { aspect-ratio: 4 / 5; }
+.detail-img--medium { aspect-ratio: 3 / 2; }
+
+/* ── HAMBURGER ── */
+.hamburger {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 24px; height: 24px; background: none; border: none; padding: 0; cursor: pointer;
+}
+.hamburger span { display: block; width: 100%; height: 1px; background: #fff; }
+
+/* ── MOBILE CONTACT BUTTON (home state) ── */
+.mobile-contact-btn {
+  display: none;
+  position: fixed; bottom: 16px; left: 16px; right: 16px;
+  z-index: 90;
+  text-align: center; padding: 14px;
+  background: #000; color: #fff;
+  border: none; font-size: var(--text-3);
+  font-family: inherit; cursor: pointer;
+}
+.mobile-contact-btn:hover { opacity: 0.8; }
+
+/* ── MOBILE CONTACT OVERLAY ── */
+.mobile-contact-overlay {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 200; background: #000;
+  padding: 16px; padding-top: 70px;
+  overflow-y: auto;
+  flex-direction: column;
+}
+.mobile-contact-overlay.is-visible { display: flex; }
+.mobile-contact-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 26px; height: 26px; background: none; border: none; cursor: pointer;
+}
+.mobile-contact-close::before, .mobile-contact-close::after {
+  content: ''; position: absolute;
+  width: 22px; height: 1px; background: #fff;
+  top: 50%; left: 50%;
+}
+.mobile-contact-close::before { transform: translate(-50%, -50%) rotate(45deg); }
+.mobile-contact-close::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* ── RESPONSIVE: TABLET ── */
+@media (max-width: 1279px) {
+  .site-main { overflow: visible; }
+  body { height: auto; overflow: auto; }
+  .layout, .layout.is-open { grid-template-columns: 1fr; height: auto; }
+  .index-column, .detail-column, .contact-column { height: auto; overflow: visible; }
+  .layout.is-open .detail-column {
+    display: flex; border-top: 1px solid #555; border-left: 0;
+  }
+  .layout.is-open .project-row { grid-template-columns: 1fr; }
+  .layout.is-open .project-thumb { display: none; }
+  .detail-header { position: static; }
+  .detail-scroll { overflow: visible; padding-bottom: 0; }
+  .contact-column { border-top: 1px solid #555; border-left: 0; }
+  .project-row { grid-template-columns: 1fr 40vw; }
+}
+
+/* ── RESPONSIVE: MOBILE ── */
+@media (max-width: 767px) {
+  :root { --title-main: 20px; --title-open: 14px; --detail-title: 20px; }
+  .brand svg { height: 14px; }
+  .site-header__inner { padding: 8px var(--gap); }
+  .header-nav { gap: 20px; }
+  .header-label { font-size: 10px; }
+  .project-row { grid-template-columns: 1fr !important; min-height: 280px; }
+  .project-thumb { min-height: 200px; }
+
+  /* Mobile hover: image fills row, title overlays in white on top (no height shrink) */
+  .project-item:hover .project-meta,
+  .project-item:active .project-meta {
+    position: absolute; top: 0; left: 0; right: 0;
+    padding: var(--gap);
+    background: transparent;
+    z-index: 2;
+  }
+  .project-item:hover .project-title,
+  .project-item:active .project-title { color: #fff; }
+
+  /* Home: show contact button, hide contact column */
+  .contact-column { display: none !important; }
+  .mobile-contact-btn { display: block; }
+
+  /* Detail open: restore full-height layout, single column */
+  body.detail-open { height: 100vh; overflow: hidden; }
+  body.detail-open .site-main { flex: 1 1 0; min-height: 0; overflow: hidden; }
+  .layout.is-open {
+    grid-template-columns: 1fr !important;
+    height: 100% !important; max-height: 100% !important;
+  }
+  .layout.is-open .index-column { display: none; }
+  .layout.is-open .hamburger { display: flex; }
+  .layout.is-open .header-nav { display: none; }
+  .layout.is-open .detail-column {
+    display: flex !important; flex-direction: column !important;
+    border-left: none; border-top: none;
+    height: 100% !important; min-height: 0 !important;
+    overflow: hidden !important;
+  }
+  .layout.is-open .detail-shell {
+    flex: 1 1 0; min-height: 0; overflow: hidden;
+  }
+  .layout.is-open .detail-scroll {
+    flex: 1 1 0; min-height: 0; overflow-y: auto !important;
+  }
+  .layout.is-open .mobile-contact-btn { display: none; }
+
+  /* Index overlay from hamburger */
+  .index-column.mobile-overlay {
+    display: block !important;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 100; background: #fff;
+    padding: var(--gap); padding-top: 80px;
+    overflow-y: auto;
+  }
+  .index-column.mobile-overlay .project-thumb { display: none; }
+  .index-column.mobile-overlay .project-row { grid-template-columns: 1fr !important; }
+  .index-column.mobile-overlay .project-item { height: auto !important; }
+}
+.mobile-contact-btn { z-index: 90; }
+
+/* ── CURSOR DOT TRAIL ── */
+/* Hide the OS mouse pointer — dots replace it */
+html, body, a, button, .project-item, .close-button,
+.hamburger, .mobile-contact-btn, .send-button,
+.header-label a, .tag { cursor: none; }
+/* Keep text cursor on text inputs */
+input, textarea, [contenteditable] { cursor: text; }
+
+.cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  will-change: transform;
+}
+.cursor-dot.is-visible { opacity: 1; }
+/* 4 different tag colors */
+.cursor-dot--1 { width: 8px; height: 8px; background: #FF00FF; } /* magenta */
+.cursor-dot--2 { width: 8px; height: 8px; background: #00E5FF; } /* cyan */
+.cursor-dot--3 { width: 8px; height: 8px; background: #CCFF00; } /* lime */
+.cursor-dot--4 { width: 8px;  height: 8px;  background: #0000FE; } /* blue */
+body.cursor-over-input .cursor-dot { opacity: 0; }
+@media (max-width: 767px) {
+  html, body, a, button, .project-item, .close-button,
+  .hamburger, .mobile-contact-btn, .send-button,
+  .header-label a, .tag { cursor: auto; }
+  .cursor-dot { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor dot trail: 4 dots of different sizes, chained follow -->
+<div class="cursor-dot cursor-dot--1" id="cursorDot1"></div>
+<div class="cursor-dot cursor-dot--2" id="cursorDot2"></div>
+<div class="cursor-dot cursor-dot--3" id="cursorDot3"></div>
+<div class="cursor-dot cursor-dot--4" id="cursorDot4"></div>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="#" class="brand" aria-label="CX home">
+      <svg viewBox="0 0 272 145" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M57.9275,0.0002 L57.9425,0.0002 L74.2235,0.0002 L74.2385,0.0002 C104.7295,0.0002 129.8975,23.8792 132.0055,53.8582 L105.4175,53.8582 C105.8755,49.8012 106.3345,47.8482 106.3345,47.8482 C110.8425,26.0932 101.4825,23.0432 87.1915,26.1902 C87.1915,26.1902 78.6645,28.4152 66.0905,28.4152 L66.0835,28.3932 L66.0755,28.4152 C53.5015,28.4152 44.9745,26.1902 44.9745,26.1902 C30.6835,23.0432 21.3235,26.0932 25.8315,47.8482 C25.8315,47.8482 27.6525,55.5742 27.6525,72.2832 C27.6525,88.9922 25.8315,96.7182 25.8315,96.7182 C21.3235,118.4732 30.6835,121.5232 44.9745,118.3762 C44.9745,118.3762 53.5015,116.1512 66.0755,116.1512 L66.0905,116.1512 C78.6645,116.1512 87.1915,118.3762 87.1915,118.3762 C101.4825,121.5232 110.8425,118.4732 106.3345,96.7182 C106.307502,96.6015555 105.862059,94.6468765 105.4185,90.7092 L132.0055,90.7092 C129.8975,120.6872 104.7295,144.5672 74.2385,144.5672 L57.9275,144.5672 C26.0675,144.5672 0.000500000001,118.5002 0.000500000001,86.6412 L0.000500000001,57.9272 C0.000500000001,26.0672 26.0675,0.0002 57.9275,0.0002 Z M164.7993,1.4166 L182.1323,25.9166 C190.0803,37.0716 193.9033,43.5856 195.6583,52.1736 C196.2763,55.1936 197.5833,59.0956 198.9543,60.6616 C200.516294,62.44765 201.752951,62.4397512 201.952965,62.4253493 C202.147609,62.4397178 203.387552,62.4508 204.9523,60.6616 C206.3233,59.0956 207.6293,55.1936 208.2463,52.1736 C210.0023,43.5856 213.8253,37.0716 221.7733,25.9166 L239.1053,1.4166 L271.8993,1.4166 L225.7843,64.7036 C223.3813,67.9276 219.5893,69.3316 219.5893,69.3316 C217.3633,70.5106 215.5443,70.6676 215.5443,72.2826 C215.5443,73.8986 217.3633,74.0556 219.5893,75.2336 C219.5893,75.2336 223.3813,76.6386 225.7843,79.8626 L271.8993,143.1496 L239.1053,143.1496 L221.7733,118.6496 C213.8253,107.4946 210.0023,100.9806 208.2463,92.3926 C207.6293,89.3726 206.3233,85.4706 204.9523,83.9036 C203.387552,82.1153161 202.147609,82.1264752 201.950626,82.1409264 C201.752951,82.1264415 200.516294,82.1184645 198.9543,83.9036 C197.5833,85.4706 196.2763,89.3726 195.6583,92.3926 C193.9033,100.9806 190.0803,107.4946 182.1323,118.6496 L164.7993,143.1496 L132.0053,143.1496 L178.1203,79.8626 C180.5243,76.6386 184.3153,75.2336 184.3153,75.2336 C186.5413,74.0556 188.3603,73.8986 188.3603,72.2826 C188.3603,70.6676 186.5413,70.5106 184.3153,69.3316 C184.3153,69.3316 180.5243,67.9276 178.1203,64.7036 L132.0053,1.4166 L164.7993,1.4166 Z"/>
+      </svg>
+    </a>
+    <button class="hamburger" id="hamburgerButton" type="button" aria-label="menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="header-nav">
+      <div class="header-label"><a href="#">About</a></div>
+      <div class="header-label"><a href="#">Works</a></div>
+      <div class="header-label"><a href="#">Archive</a></div>
+    </nav>
+  </div>
+</header>
+
+<main class="site-main">
+  <div class="layout" id="layout">
+    <section class="index-column" id="indexColumn">
+      <div class="project-list" id="projectList"></div>
+    </section>
+    <section class="detail-column" id="detailColumn">
+      <div class="detail-shell">
+        <div class="detail-header">
+          <button class="close-button" id="closeButton" type="button" aria-label="close"></button>
+          <div id="detailHeaderContent"></div>
+        </div>
+        <div class="detail-scroll">
+          <article id="detailContent"></article>
+        </div>
+      </div>
+    </section>
+    <aside class="contact-column" id="contactColumn">
+      <div class="contact-about">
+        씨엑스의 성과물은<br>
+        탄탄한 기획력과 논리를 바탕으로 보이는 것<br>
+        이상의 의미와 가치를 담고자 합니다.<br>
+        우리가 만들어낸 결과물이 본래의 취지에 맞게,<br>
+        고객사에게 최고의 기여를 할 수 있도록<br>
+        보이지 않는 디테일까지 최선을 다합니다.
+      </div>
+      <div class="contact-inquiry-section">
+        <h2 class="contact-heading">프로젝트 문의</h2>
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label class="form-label">프로젝트 제목</label>
+            <input type="text" placeholder="" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">프로젝트 내용</label>
+            <textarea rows="4" placeholder=""></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">담당자 정보</label>
+            <input type="text" placeholder="" />
+          </div>
+          <button class="send-button" type="submit">문의하기</button>
+        </form>
+      </div>
+      <div class="copyright">Copyright &copy; CX All rights reserved.</div>
+    </aside>
+  </div>
+</main>
+
+<!-- Mobile: contact inquiry button (home state) -->
+<button class="mobile-contact-btn" id="mobileContactBtn">프로젝트 문의</button>
+
+<!-- Mobile: contact overlay -->
+<div class="mobile-contact-overlay" id="mobileContactOverlay">
+  <button class="mobile-contact-close" id="mobileContactClose"></button>
+  <div class="contact-about" style="margin-bottom:20px;">
+    씨엑스의 성과물은<br>
+    탄탄한 기획력과 논리를 바탕으로 보이는 것<br>
+    이상의 의미와 가치를 담고자 합니다.<br>
+    우리가 만들어낸 결과물이 본래의 취지에 맞게,<br>
+    고객사에게 최고의 기여를 할 수 있도록<br>
+    보이지 않는 디테일까지 최선을 다합니다.
+  </div>
+  <div class="contact-inquiry-section" style="margin-top:0;">
+    <h2 class="contact-heading">프로젝트 문의</h2>
+    <form class="contact-form">
+      <div class="form-group">
+        <label class="form-label">프로젝트 제목</label>
+        <input type="text" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">프로젝트 내용</label>
+        <textarea rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">담당자 정보</label>
+        <input type="text" />
+      </div>
+      <button class="send-button" type="submit">문의하기</button>
+    </form>
+  </div>
+  <div class="copyright" style="margin-top:auto; padding-top:20px;">Copyright &copy; CX All rights reserved.</div>
+</div>
+
+<script>
+const TAG_COLORS = {
+  // Tier 1 — Signature
+  'art direction': 'art-direction',
+  'editorial design': 'editorial-design',
+  'copywriting': 'copywriting',
+  'graphic design': 'graphic-design',
+  'deck': 'deck',
+  'branded film': 'branded-film',
+  'branded photography': 'branded-photography',
+  'narrative': 'narrative',
+  'creative direction': 'creative-direction',
+  // Tier 2 — Distinct
+  'motion graphic': 'motion-graphic',
+  'sustainability': 'sustainability',
+  'social media content': 'social-media-content',
+  'keynote': 'keynote',
+  '3d graphic': '3d-graphic',
+  'illustration': 'illustration',
+  'web design': 'web-design',
+  // Tier 3A — Editorial / Print
+  'quarterly magazine': 'quarterly-magazine',
+  'inhouse magazine': 'inhouse-magazine',
+  'book design': 'book-design',
+  'art anthology': 'art-anthology',
+  'product catalogue': 'product-catalogue',
+  'editorial planning': 'editorial-planning',
+  'editing': 'editing',
+  'reporting': 'reporting',
+  'print & webzine production': 'print-webzine-production',
+  // Tier 3B — Brand System
+  'brand identity': 'brand-identity',
+  'verbal identity': 'verbal-identity',
+  'visual system': 'visual-system',
+  // Tier 3C — Physical Production
+  'merchandise': 'merchandise',
+  'package design': 'package-design',
+  'production management': 'production-management',
+  // Tier 3D — Film extension
+  'promotion film': 'promotion-film',
+  // Tier 3E — Web extension
+  'web publishing': 'web-publishing',
+};
+
+const projects = [
+  {
+    id: 1,
+    title: 'Galaxy S26 Unpacked Media Briefing',
+    year: '2026', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Motion Graphic', 'Copywriting', 'Art Direction'],
+    thumbnail: './public/portfolio/03_202602_Galaxy S26 Unpacked Media Briefing/thumbnails/01.png',
+    colors: ['#CF9595', '#D4A49F', '#CC8E92', '#DAB4AE', '#C98790', '#D7A9A7']
+  },
+  {
+    id: 2,
+    title: 'MWC Barcelona 2026 – Samsung × Qualcomm Keynote',
+    year: '2026', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Keynote', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
+    thumbnail: './public/portfolio/02_202602_MWC Barcelona 2026 - Samsung x Qualcomm Keynote/thumbnails/01.png',
+    colors: ['#CF9F95', '#D4AD9F', '#CC948E', '#DABBAE', '#C98987', '#D7B1A7']
+  },
+  {
+    id: 3,
+    title: 'Galaxy Buds4 – Media Briefing',
+    year: '2026', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
+    thumbnail: './public/portfolio/01_202602_Galaxy Buds4 - Media Briefing/thumbnails/01.png',
+    colors: ['#CFA895', '#D4B59F', '#CC9E8E', '#DAC2AE', '#C99487', '#D7B9A7']
+  },
+  {
+    id: 4,
+    title: 'Urimunhwa – Monthly Magazine',
+    year: '2026', client: 'Federation of Korean Cultural Center',
+    tags: ['Inhouse Magazine', 'Editorial Planning', 'Editorial Design', 'Editing', 'Copywriting', 'Reporting', 'Print & Webzine Production', 'Art Direction'],
+    thumbnail: './public/portfolio/03_202602_Galaxy S26 Unpacked Media Briefing/thumbnails/01.png',
+    colors: ['#CFB295', '#D4BE9F', '#CCA98E', '#DACAAE', '#C99F87', '#D7C1A7']
+  },
+  {
+    id: 5,
+    title: 'IT\'S — HERE : Korean Paintings Abroad',
+    year: '2025', client: 'Overseas Korean Cultural Heritage Foundation',
+    tags: ['Art Anthology', 'Book Design', 'Art Direction'],
+    thumbnail: './public/portfolio/02_202602_MWC Barcelona 2026 - Samsung x Qualcomm Keynote/thumbnails/01.png',
+    colors: ['#CFBC95', '#D4C79F', '#CCB38E', '#DAD1AE', '#C9AA87', '#D7C9A7']
+  },
+  {
+    id: 6,
+    title: 'Galaxy Book6 Media Briefing',
+    year: '2025', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', '3D Graphic', 'Copywriting', 'Art Direction'],
+    thumbnail: './public/portfolio/01_202602_Galaxy Buds4 - Media Briefing/thumbnails/01.png',
+    colors: ['#CFC595', '#D4CF9F', '#CCBD8E', '#DAD9AE', '#C9B587', '#D7D1A7']
+  },
+  {
+    id: 7,
+    title: 'Galaxy Tri-Fold Media Briefing',
+    year: '2025', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
+    thumbnail: './public/portfolio/03_202602_Galaxy S26 Unpacked Media Briefing/thumbnails/01.png',
+    colors: ['#CFCF95', '#CFD49F', '#CCC88E', '#D4DAAE', '#C9C087', '#D5D7A7']
+  },
+  {
+    id: 8,
+    title: 'Genesis Road Trip – Cheongju',
+    year: '2025', client: 'Genesis', agency: 'National Geographic Traveler Korea',
+    tags: ['Branded Film', 'Branded Photography', 'Narrative', 'Creative Direction'],
+    thumbnail: './public/portfolio/02_202602_MWC Barcelona 2026 - Samsung x Qualcomm Keynote/thumbnails/01.png',
+    colors: ['#C5CF95', '#C7D49F', '#C6CC8E', '#CDDAAE', '#C7C987', '#CCD7A7']
+  },
+  {
+    id: 9,
+    title: 'Snapdragon Summit Keynote',
+    year: '2025', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Keynote', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
+    thumbnail: './public/portfolio/01_202602_Galaxy Buds4 - Media Briefing/thumbnails/01.png',
+    colors: ['#BCCF95', '#BED49F', '#BBCC8E', '#C5DAAE', '#BCC987', '#C4D7A7']
+  },
+  {
+    id: 10,
+    title: 'Ocean-Bound Plastics to Galaxy Watch8 Series – Carousel Post',
+    year: '2025', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Social Media Content', 'Sustainability', 'Illustration', 'Copywriting', 'Art Direction'],
+    colors: ['#B2CF95', '#B5D49F', '#B1CC8E', '#BEDAAE', '#B1C987', '#BCD7A7']
+  },
+  {
+    id: 11,
+    title: 'Samsung × the Global Goals App – Animated Post',
+    year: '2025', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Social Media Content', 'Sustainability', 'Art Direction', 'Motion Graphic'],
+    colors: ['#A8CF95', '#ADD49F', '#A7CC8E', '#B6DAAE', '#A6C987', '#B4D7A7']
+  },
+  {
+    id: 12,
+    title: 'Galaxy S25 FE & Tab S11 Media Briefing',
+    year: '2025', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
+    colors: ['#9FCF95', '#A4D49F', '#9CCC8E', '#AFDAAE', '#9BC987', '#ACD7A7']
+  },
+  {
+    id: 13,
+    title: 'Samsung B2B Integrated Offering – Reference Catalogue',
+    year: '2025', client: 'Samsung Electronics B2B', agency: 'Orca Creative',
+    tags: ['Editorial Design', 'Branded Photography', 'Copywriting', 'Art Direction'],
+    colors: ['#95CF95', '#9FD4A4', '#92CC8E', '#AEDAB4', '#90C987', '#A7D7A9']
+  },
+  {
+    id: 14,
+    title: 'Genesis Road Trip – Gangneung',
+    year: '2025', client: 'Genesis', agency: 'National Geographic Traveler Korea',
+    tags: ['Branded Film', 'Branded Photography', 'Narrative', 'Creative Direction'],
+    colors: ['#95CF9F', '#9FD4AD', '#8ECC94', '#AEDABB', '#87C989', '#A7D7B1']
+  },
+  {
+    id: 15,
+    title: 'Coral In Focus – Giveaway Keychain',
+    year: '2025', client: 'Samsung Electronics',
+    tags: ['Merchandise', 'Sustainability', 'Package Design', 'Production Management'],
+    colors: ['#95CFA8', '#9FD4B5', '#8ECC9E', '#AEDAC2', '#87C994', '#A7D7B9']
+  },
+  {
+    id: 16,
+    title: 'Genesis Road Trip – Yeosu',
+    year: '2025', client: 'Genesis', agency: 'National Geographic Traveler Korea',
+    tags: ['Branded Film', 'Branded Photography', 'Narrative', 'Creative Direction'],
+    colors: ['#95CFB2', '#9FD4BE', '#8ECCA9', '#AEDACA', '#87C99F', '#A7D7C1']
+  },
+  {
+    id: 17,
+    title: 'Galaxy S25 Edge Media Briefing',
+    year: '2025', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', '3D Graphic', 'Copywriting', 'Art Direction'],
+    colors: ['#95CFBC', '#9FD4C7', '#8ECCB3', '#AEDAD1', '#87C9AA', '#A7D7C9']
+  },
+  {
+    id: 18,
+    title: 'HIKE SEOUL – Brand Identity',
+    year: '2025', client: 'Seoul Metropolitan Government', agency: 'Seoul Tourism Organization',
+    tags: ['Brand Identity', 'Verbal Identity', 'Graphic Design', 'Visual System'],
+    colors: ['#95CFC5', '#9FD4CF', '#8ECCBD', '#AEDAD9', '#87C9B5', '#A7D7D1']
+  },
+  {
+    id: 19,
+    title: 'Coral In Focus – Carousel Post',
+    year: '2025', client: 'Samsung Electronics', agency: 'Cheil Worldwide',
+    tags: ['Social Media Content', 'Sustainability', 'Illustration', 'Copywriting', 'Art Direction'],
+    colors: ['#95CFCF', '#9FCFD4', '#8ECCC8', '#AED4DA', '#87C9C0', '#A7D5D7']
+  },
+  {
+    id: 20,
+    title: 'Samsung Compressor 2025 Product Catalogue',
+    year: '2025', client: 'Samsung Electronics',
+    tags: ['Product Catalogue', 'Editorial Design', 'Art Direction'],
+    colors: ['#95C5CF', '#9FC7D4', '#8EC6CC', '#AECDDA', '#87C7C9', '#A7CCD7']
+  },
+  {
+    id: 21,
+    title: 'Galaxy S25 Unpacked Media Briefing',
+    year: '2025', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Motion Graphic', 'Copywriting', 'Art Direction'],
+    colors: ['#95BCCF', '#9FBED4', '#8EBBCC', '#AEC5DA', '#87BCC9', '#A7C4D7']
+  },
+  {
+    id: 22,
+    title: 'Korean Literature Now – Quarterly Magazine',
+    year: '2024-2025', client: 'Literature Translation Institute of Korea', agency: 'ag communications',
+    tags: ['Quarterly Magazine', 'Editorial Design', 'Art Direction'],
+    colors: ['#95B2CF', '#9FB5D4', '#8EB1CC', '#AEBEDA', '#87B1C9', '#A7BCD7']
+  },
+  {
+    id: 23,
+    title: 'Seoul Medical Tourism – Promotion Film',
+    year: '2024', client: 'Seoul Metropolitan Government', agency: 'Seoul Tourism Organization',
+    tags: ['Promotion Film', 'Narrative', 'Creative Direction'],
+    colors: ['#95A8CF', '#9FADD4', '#8EA7CC', '#AEB6DA', '#87A6C9', '#A7B4D7']
+  },
+  {
+    id: 24,
+    title: 'Genesis Road Trip – Yeongwol',
+    year: '2024', client: 'Genesis', agency: 'National Geographic Traveler Korea',
+    tags: ['Branded Film', 'Branded Photography', 'Narrative', 'Creative Direction'],
+    colors: ['#959FCF', '#9FA4D4', '#8E9CCC', '#AEAFDA', '#879BC9', '#A7ACD7']
+  },
+  {
+    id: 25,
+    title: 'Samsung B2B Integrated Offering – Vertical Catalogue',
+    year: '2024', client: 'Samsung Electronics B2B', agency: 'Orca Creative',
+    tags: ['Editorial Design', 'Copywriting', 'Art Direction'],
+    colors: ['#9595CF', '#A49FD4', '#8E92CC', '#B4AEDA', '#8790C9', '#A9A7D7']
+  },
+  {
+    id: 26,
+    title: 'Galaxy Book5 Pro 360 & Tab S10 Experience Guide',
+    year: '2024', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Art Direction'],
+    colors: ['#9F95CF', '#AD9FD4', '#948ECC', '#BBAEDA', '#8987C9', '#B1A7D7']
+  },
+  {
+    id: 27,
+    title: 'Seoul My Soul Shop – Key Visual',
+    year: '2024', client: 'Seoul Metropolitan Government', agency: 'Seoul Tourism Organization',
+    tags: ['Graphic Design', 'Editorial Design', 'Motion Graphic', 'Web Design', 'Art Direction'],
+    colors: ['#A895CF', '#B59FD4', '#9E8ECC', '#C2AEDA', '#9487C9', '#B9A7D7']
+  },
+  {
+    id: 28,
+    title: 'Genesis Road Trip – Asan',
+    year: '2024', client: 'Genesis', agency: 'National Geographic Traveler Korea',
+    tags: ['Branded Film', 'Branded Photography', 'Narrative', 'Creative Direction'],
+    colors: ['#B295CF', '#BE9FD4', '#A98ECC', '#CAAEDA', '#9F87C9', '#C1A7D7']
+  },
+  {
+    id: 29,
+    title: 'Galaxy Z Fold6 / Flip6 / Galaxy Wearable Media Briefing',
+    year: '2024', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
+    colors: ['#BC95CF', '#C79FD4', '#B38ECC', '#D1AEDA', '#AA87C9', '#C9A7D7']
+  },
+  {
+    id: 30,
+    title: 'SBS Biz Forum – Galaxy AI Media Briefing',
+    year: '2024', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
+    colors: ['#C595CF', '#CF9FD4', '#BD8ECC', '#D9AEDA', '#B587C9', '#D1A7D7']
+  },
+  {
+    id: 31,
+    title: 'Galaxy Book4 Edge Media Briefing',
+    year: '2024', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
+    colors: ['#CF95CF', '#D49FCF', '#C88ECC', '#DAAED4', '#C087C9', '#D7A7D5']
+  },
+  {
+    id: 32,
+    title: 'Galaxy S24 Media Briefing',
+    year: '2024', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
+    colors: ['#CF95C5', '#D49FC7', '#CC8EC6', '#DAAECD', '#C987C7', '#D7A7CC']
+  },
+  {
+    id: 33,
+    title: 'Galaxy S24 Experience Guide Site',
+    year: '2024', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Web Design', 'Web Publishing', 'Art Direction'],
+    colors: ['#CF95BC', '#D49FBE', '#CC8EBB', '#DAAEC5', '#C987BC', '#D7A7C4']
+  },
+  {
+    id: 34,
+    title: 'Galaxy Sustainability Media Briefing',
+    year: '2024', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
+    colors: ['#CF95B2', '#D49FB5', '#CC8EB1', '#DAAEBE', '#C987B1', '#D7A7BC']
+  },
+  {
+    id: 35,
+    title: 'Galaxy AI Media Briefing',
+    year: '2024', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
+    colors: ['#CF95A8', '#D49FAD', '#CC8EA7', '#DAAEB6', '#C987A6', '#D7A7B4']
+  },
+  {
+    id: 36,
+    title: 'Galaxy Book4 Briefing Deck',
+    year: '2024', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
+    tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Art Direction'],
+    colors: ['#CF959F', '#D49FA4', '#CC8E9C', '#DAAEAF', '#C9879B', '#D7A7AC']
+  }
+];
+
+const layout = document.getElementById('layout');
+const indexColumn = document.getElementById('indexColumn');
+const projectList = document.getElementById('projectList');
+const detailHeaderContent = document.getElementById('detailHeaderContent');
+const detailContent = document.getElementById('detailContent');
+const closeButton = document.getElementById('closeButton');
+const mobileContactBtn = document.getElementById('mobileContactBtn');
+const mobileContactOverlay = document.getElementById('mobileContactOverlay');
+const mobileContactClose = document.getElementById('mobileContactClose');
+let activeId = null;
+
+function tagClass(tag) {
+  const key = tag.toLowerCase();
+  return TAG_COLORS[key] || 'default';
+}
+
+function tagHTML(tags) {
+  return tags.map(t => `<span class="tag tag--${tagClass(t)}">${t}</span>`).join('');
+}
+
+function renderList() {
+  projectList.innerHTML = projects.map(p => {
+    const thumbStyle = p.thumbnail
+      ? `background-image: url('${p.thumbnail}');`
+      : `background: ${p.colors && p.colors[0] ? p.colors[0] : '#CCCCCC'};`;
+    return `
+    <button class="project-item" type="button" data-id="${p.id}">
+      <div class="project-row">
+        <div class="project-meta">
+          <h2 class="project-title">${p.title}</h2>
+          <div class="tag-list">${tagHTML(p.tags)}</div>
+        </div>
+        <div class="project-thumb" style="${thumbStyle}"></div>
+      </div>
+    </button>
+  `;
+  }).join('');
+
+  projectList.querySelectorAll('.project-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeId = Number(btn.dataset.id);
+      renderState();
+    });
+  });
+}
+
+function renderDetail() {
+  const p = projects.find(i => i.id === activeId);
+  if (!p) { detailHeaderContent.innerHTML = ''; detailContent.innerHTML = ''; return; }
+
+  detailHeaderContent.innerHTML = `
+    <h1 class="detail-title">${p.title}</h1>
+    <div class="detail-meta">Year. ${p.year} / Client. ${p.client}${p.agency ? " / Agency. " + p.agency : ""}</div>
+    <div class="detail-tags">${tagHTML(p.tags)}</div>
+  `;
+
+  detailContent.innerHTML = `
+    <div class="detail-gallery">
+      <div class="detail-img detail-img--hero" style="background:${p.colors[0]}"></div>
+      <div class="detail-img detail-img--wide" style="background:${p.colors[1]}"></div>
+      <div class="detail-img--pair-wrap">
+        <div class="detail-img detail-img--vertical" style="background:${p.colors[2]}"></div>
+        <div class="detail-img detail-img--vertical" style="background:${p.colors[3]}"></div>
+      </div>
+      <div class="detail-img detail-img--medium" style="background:${p.colors[4]}"></div>
+      <div class="detail-img detail-img--wide" style="background:${p.colors[5]}"></div>
+    </div>
+  `;
+}
+
+function syncIndexHeight() {
+  const detailHeader = document.querySelector('.detail-header');
+  if (!detailHeader || !layout.classList.contains('is-open')) {
+    projectList.querySelectorAll('.project-item').forEach(btn => {
+      btn.style.height = '';
+    });
+    return;
+  }
+  requestAnimationFrame(() => {
+    const h = detailHeader.offsetHeight;
+    projectList.querySelectorAll('.project-item').forEach(btn => {
+      btn.style.height = h + 'px';
+      btn.style.overflow = 'hidden';
+    });
+  });
+}
+
+function renderState() {
+  const isOpen = activeId !== null;
+  layout.classList.toggle('is-open', isOpen);
+  document.body.classList.toggle('detail-open', isOpen);
+
+  projectList.querySelectorAll('.project-item').forEach(btn => {
+    const id = Number(btn.dataset.id);
+    btn.classList.toggle('is-active', isOpen && id === activeId);
+  });
+
+  if (isOpen) { renderDetail(); syncIndexHeight(); }
+  else {
+    detailHeaderContent.innerHTML = ''; detailContent.innerHTML = '';
+    syncIndexHeight();
+  }
+}
+
+closeButton.addEventListener('click', () => {
+  activeId = null;
+  indexColumn.classList.remove('mobile-overlay');
+  renderState();
+});
+
+const hamburgerButton = document.getElementById('hamburgerButton');
+hamburgerButton.addEventListener('click', () => {
+  indexColumn.classList.toggle('mobile-overlay');
+});
+
+function attachMobileClose() {
+  projectList.querySelectorAll('.project-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      indexColumn.classList.remove('mobile-overlay');
+    });
+  });
+}
+
+// Mobile contact overlay
+mobileContactBtn.addEventListener('click', () => {
+  mobileContactOverlay.classList.add('is-visible');
+});
+mobileContactClose.addEventListener('click', () => {
+  mobileContactOverlay.classList.remove('is-visible');
+});
+
+renderList();
+attachMobileClose();
+renderState();
+
+// ── Cursor dot trail — each dot chases the previous one ──
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+
+const dots = [
+  { el: document.getElementById('cursorDot1'), x: mouseX, y: mouseY, ease: 0.38 },
+  { el: document.getElementById('cursorDot2'), x: mouseX, y: mouseY, ease: 0.28 },
+  { el: document.getElementById('cursorDot3'), x: mouseX, y: mouseY, ease: 0.20 },
+  { el: document.getElementById('cursorDot4'), x: mouseX, y: mouseY, ease: 0.14 },
+];
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  dots.forEach(d => d.el.classList.add('is-visible'));
+
+  // Hide dots when hovering over text inputs (text cursor context)
+  const t = e.target;
+  const isTextInput = t && (
+    t.tagName === 'INPUT' ||
+    t.tagName === 'TEXTAREA' ||
+    t.isContentEditable
+  );
+  document.body.classList.toggle('cursor-over-input', isTextInput);
+});
+document.addEventListener('mouseleave', () => {
+  dots.forEach(d => d.el.classList.remove('is-visible'));
+});
+document.addEventListener('mouseenter', () => {
+  dots.forEach(d => d.el.classList.add('is-visible'));
+});
+
+function animateDots() {
+  let targetX = mouseX;
+  let targetY = mouseY;
+  dots.forEach(d => {
+    d.x += (targetX - d.x) * d.ease;
+    d.y += (targetY - d.y) * d.ease;
+    d.el.style.transform = `translate(${d.x}px, ${d.y}px) translate(-50%, -50%)`;
+    targetX = d.x;
+    targetY = d.y;
+  });
+  requestAnimationFrame(animateDots);
+}
+animateDots();
+
+</script>
+</body>
+</html>

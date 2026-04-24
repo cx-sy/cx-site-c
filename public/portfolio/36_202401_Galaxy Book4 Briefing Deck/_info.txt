@@ -1,0 +1,11 @@
+Title:   Galaxy Book4 Briefing Deck
+Period:  2024-01
+Year:    2024
+Client:  Samsung Electronics MX
+Agency:  Cheil Worldwide
+Tags:    Deck, Editorial Design, Graphic Design, Art Direction
+
+Source (원본 프로젝트 폴더):
+  JOB_CX_ing/삼성 MX/2024/GB4_BriefingDeck/01_DELIVERY/
+
+Source folder name: GB4_BriefingDeck

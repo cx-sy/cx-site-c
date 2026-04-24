@@ -1,0 +1,11 @@
+Title:   Galaxy S25 Unpacked Media Briefing
+Period:  2025-01
+Year:    2025
+Client:  Samsung Electronics MX
+Agency:  Cheil Worldwide
+Tags:    Deck, Editorial Design, Graphic Design, Motion Graphic, Copywriting, Art Direction
+
+Source (원본 프로젝트 폴더):
+  JOB_CX_ing/삼성 MX/2025/S25_BriefingDeck/01_DELIVERY/
+
+Source folder name: S25_BriefingDeck
