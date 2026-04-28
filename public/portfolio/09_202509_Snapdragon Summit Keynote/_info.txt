@@ -1,0 +1,11 @@
+Title:   Snapdragon Summit Keynote
+Period:  2025-09
+Year:    2025
+Client:  Samsung Electronics MX
+Agency:  Cheil Worldwide
+Tags:    Keynote, Editorial Design, Graphic Design, Copywriting, Art Direction
+
+Source (원본 프로젝트 폴더):
+  JOB_CX_ing/삼성 MX/2025/SnapdragonSummit/01_DELIVERY/
+
+Source folder name: SnapdragonSummit

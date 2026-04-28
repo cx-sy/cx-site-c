@@ -1,0 +1,11 @@
+Title:   Galaxy Book6 Media Briefing
+Period:  2025-12
+Year:    2025
+Client:  Samsung Electronics MX
+Agency:  Cheil Worldwide
+Tags:    Deck, Editorial Design, Graphic Design, 3D Graphic, Copywriting, Art Direction
+
+Source (원본 프로젝트 폴더):
+  JOB_CX_ing/삼성 MX/2025/GB6_BriefingDeck/01_DELIVERY/
+
+Source folder name: GB6_BriefingDeck

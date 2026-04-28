@@ -195,18 +195,12 @@ textarea { resize: none; }
   background-color: transparent;
   background-size: cover;
   background-position: center;
-  transition: transform 400ms ease, filter 400ms ease, width 180ms ease, height 180ms ease;
+  transition: filter 450ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* ── Hover: image fills entire row, zoom + blur, text overlays on top ── */
+/* ── Hover: brightness만 적용 (확장/스케일 없음) ── */
 .project-item:hover .project-thumb,
 .project-item:active .project-thumb {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  width: 100%; height: 100%;
-  z-index: 1;
-  min-height: auto;
-  transform: scale(1.1);
   filter: brightness(0.65);
 }
 .project-item:hover .project-meta {
@@ -219,6 +213,26 @@ textarea { resize: none; }
 .project-item:hover .tag {
   opacity: 0.9;
 }
+
+/* ── Hover image overlay (오버레이만, 모드 전환 없음) ── */
+/* default thumb 은 항상 scale+darken (이미 위 .project-item:hover 룰에서 처리)
+   hover image 가 있는 프로젝트는 그 위에 페이드 인되어 덮음 */
+.project-thumb-hover {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 450ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+  z-index: 1;
+  filter: brightness(0.65);
+}
+.project-item:hover .project-thumb-hover,
+.project-item:active .project-thumb-hover {
+  opacity: 1;
+}
+.layout.is-open .project-thumb-hover { display: none; }
 
 /* When detail is open: single column, no image */
 .layout.is-open .project-row {
@@ -480,12 +494,14 @@ textarea { resize: none; }
   }
   .project-title { color: #fff !important; }
 
-  /* 탭/호버 시: scale + darken (데스크톱과 동일한 효과) */
+  /* 탭/호버 시: darken only (scale 제거) */
   .project-item:hover .project-thumb,
   .project-item:active .project-thumb {
-    transform: scale(1.1);
     filter: brightness(0.65);
   }
+
+  /* Mobile: hover image 사용 안 함 (default 썸네일만 사용) */
+  .project-thumb-hover { display: none !important; }
 
   /* Home: show contact button, hide contact column */
   .contact-column { display: none !important; }
@@ -529,46 +545,9 @@ textarea { resize: none; }
 }
 .mobile-contact-btn { z-index: 90; }
 
-/* ── CURSOR DOT TRAIL ── */
-/* Hide the OS mouse pointer — dots replace it */
-html, body, a, button, .project-item, .close-button,
-.hamburger, .mobile-contact-btn, .send-button,
-.header-label a, .tag { cursor: none; }
-/* Keep text cursor on text inputs */
-input, textarea, [contenteditable] { cursor: text; }
-
-.cursor-dot {
-  position: fixed;
-  top: 0; left: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity 300ms ease;
-  will-change: transform;
-}
-.cursor-dot.is-visible { opacity: 1; }
-/* 4 different tag colors */
-.cursor-dot--1 { width: 8px; height: 8px; background: #FF00FF; } /* magenta */
-.cursor-dot--2 { width: 8px; height: 8px; background: #00E5FF; } /* cyan */
-.cursor-dot--3 { width: 8px; height: 8px; background: #CCFF00; } /* lime */
-.cursor-dot--4 { width: 8px;  height: 8px;  background: #0000FE; } /* blue */
-body.cursor-over-input .cursor-dot { opacity: 0; }
-@media (max-width: 767px) {
-  html, body, a, button, .project-item, .close-button,
-  .hamburger, .mobile-contact-btn, .send-button,
-  .header-label a, .tag { cursor: auto; }
-  .cursor-dot { display: none; }
-}
 </style>
 </head>
 <body>
-
-<!-- Cursor dot trail: 4 dots of different sizes, chained follow -->
-<div class="cursor-dot cursor-dot--1" id="cursorDot1"></div>
-<div class="cursor-dot cursor-dot--2" id="cursorDot2"></div>
-<div class="cursor-dot cursor-dot--3" id="cursorDot3"></div>
-<div class="cursor-dot cursor-dot--4" id="cursorDot4"></div>
 
 <header class="site-header">
   <div class="site-header__inner">
@@ -727,7 +706,7 @@ const projects = [
     title: 'Galaxy S26 Unpacked Media Briefing',
     year: '2026', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
     tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Motion Graphic', 'Copywriting', 'Art Direction'],
-    thumbnail: './public/portfolio/03_202602_Galaxy S26 Unpacked Media Briefing/thumbnails/01.png',
+    thumbnail: './public/portfolio/01_202602_Galaxy S26 Unpacked Media Briefing/thumbnails/01.png',
     colors: ['#CF9595', '#D4A49F', '#CC8E92', '#DAB4AE', '#C98790', '#D7A9A7']
   },
   {
@@ -743,7 +722,7 @@ const projects = [
     title: 'Galaxy Buds4 – Media Briefing',
     year: '2026', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
     tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
-    thumbnail: './public/portfolio/01_202602_Galaxy Buds4 - Media Briefing/thumbnails/01.png',
+    thumbnail: './public/portfolio/03_202602_Galaxy Buds4 - Media Briefing/thumbnails/01.png',
     colors: ['#CFA895', '#D4B59F', '#CC9E8E', '#DAC2AE', '#C99487', '#D7B9A7']
   },
   {
@@ -751,7 +730,7 @@ const projects = [
     title: 'Urimunhwa – Monthly Magazine',
     year: '2026', client: 'Federation of Korean Cultural Center',
     tags: ['Inhouse Magazine', 'Editorial Planning', 'Editorial Design', 'Editing', 'Copywriting', 'Reporting', 'Print & Webzine Production', 'Art Direction'],
-    thumbnail: './public/portfolio/03_202602_Galaxy S26 Unpacked Media Briefing/thumbnails/01.png',
+    thumbnail: './public/portfolio/04_202602_Urimunhwa - Monthly Magazine/thumbnails/01.png',
     colors: ['#CFB295', '#D4BE9F', '#CCA98E', '#DACAAE', '#C99F87', '#D7C1A7']
   },
   {
@@ -759,7 +738,7 @@ const projects = [
     title: 'IT\'S — HERE : Korean Paintings Abroad',
     year: '2025', client: 'Overseas Korean Cultural Heritage Foundation',
     tags: ['Art Anthology', 'Book Design', 'Art Direction'],
-    thumbnail: './public/portfolio/02_202602_MWC Barcelona 2026 - Samsung x Qualcomm Keynote/thumbnails/01.png',
+    thumbnail: './public/portfolio/05_202512_ITS - HERE Korean Paintings Abroad/thumbnails/01.png',
     colors: ['#CFBC95', '#D4C79F', '#CCB38E', '#DAD1AE', '#C9AA87', '#D7C9A7']
   },
   {
@@ -767,7 +746,7 @@ const projects = [
     title: 'Galaxy Book6 Media Briefing',
     year: '2025', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
     tags: ['Deck', 'Editorial Design', 'Graphic Design', '3D Graphic', 'Copywriting', 'Art Direction'],
-    thumbnail: './public/portfolio/01_202602_Galaxy Buds4 - Media Briefing/thumbnails/01.png',
+    thumbnail: './public/portfolio/06_202512_Galaxy Book6 Media Briefing/thumbnails/01.png',
     colors: ['#CFC595', '#D4CF9F', '#CCBD8E', '#DAD9AE', '#C9B587', '#D7D1A7']
   },
   {
@@ -775,7 +754,7 @@ const projects = [
     title: 'Galaxy Tri-Fold Media Briefing',
     year: '2025', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
     tags: ['Deck', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
-    thumbnail: './public/portfolio/03_202602_Galaxy S26 Unpacked Media Briefing/thumbnails/01.png',
+    thumbnail: './public/portfolio/01_202602_Galaxy S26 Unpacked Media Briefing/thumbnails/01.png',
     colors: ['#CFCF95', '#CFD49F', '#CCC88E', '#D4DAAE', '#C9C087', '#D5D7A7']
   },
   {
@@ -791,7 +770,7 @@ const projects = [
     title: 'Snapdragon Summit Keynote',
     year: '2025', client: 'Samsung Electronics MX', agency: 'Cheil Worldwide',
     tags: ['Keynote', 'Editorial Design', 'Graphic Design', 'Copywriting', 'Art Direction'],
-    thumbnail: './public/portfolio/01_202602_Galaxy Buds4 - Media Briefing/thumbnails/01.png',
+    thumbnail: './public/portfolio/03_202602_Galaxy Buds4 - Media Briefing/thumbnails/01.png',
     colors: ['#BCCF95', '#BED49F', '#BBCC8E', '#C5DAAE', '#BCC987', '#C4D7A7']
   },
   {
@@ -1010,6 +989,10 @@ function renderList() {
     const thumbStyle = p.thumbnail
       ? `background-image: url('${p.thumbnail}');`
       : `background: ${p.colors && p.colors[0] ? p.colors[0] : '#CCCCCC'};`;
+    // Auto-derive hover URL: '01.png' → '01-hover.png'
+    const hoverUrl = p.thumbnail
+      ? p.thumbnail.replace(/(\.[^.]+)$/, '-hover$1')
+      : null;
     return `
     <button class="project-item" type="button" data-id="${p.id}">
       <div class="project-row">
@@ -1018,10 +1001,24 @@ function renderList() {
           <div class="tag-list">${tagHTML(p.tags)}</div>
         </div>
         <div class="project-thumb" style="${thumbStyle}"></div>
+        ${hoverUrl ? `<div class="project-thumb-hover" data-hover-url="${hoverUrl}"></div>` : ''}
       </div>
     </button>
   `;
   }).join('');
+
+  // hover 이미지: 즉시 설정 + 백그라운드 preload (404면 화면에 안 보임 → 기본 A방식 그대로 노출)
+  projectList.querySelectorAll('.project-thumb-hover').forEach(el => {
+    const url = el.dataset.hoverUrl;
+    el.style.backgroundImage = `url('${url}')`;
+    // 백그라운드 preload — 호버 전에 이미지 캐시 채워둠 (깜빡임 최소화)
+    const img = new Image();
+    img.onerror = () => {
+      // 404 — 백그라운드 비워서 호버 시 투명 (default thumb의 scale+darken 만 보임)
+      el.style.backgroundImage = '';
+    };
+    img.src = url;
+  });
 
   projectList.querySelectorAll('.project-item').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1143,52 +1140,6 @@ if (contactParam === 'open') {
     mobileContactOverlay.classList.add('is-visible');
   });
 }
-
-// ── Cursor dot trail — each dot chases the previous one ──
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-
-const dots = [
-  { el: document.getElementById('cursorDot1'), x: mouseX, y: mouseY, ease: 0.38 },
-  { el: document.getElementById('cursorDot2'), x: mouseX, y: mouseY, ease: 0.28 },
-  { el: document.getElementById('cursorDot3'), x: mouseX, y: mouseY, ease: 0.20 },
-  { el: document.getElementById('cursorDot4'), x: mouseX, y: mouseY, ease: 0.14 },
-];
-
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  dots.forEach(d => d.el.classList.add('is-visible'));
-
-  // Hide dots when hovering over text inputs (text cursor context)
-  const t = e.target;
-  const isTextInput = t && (
-    t.tagName === 'INPUT' ||
-    t.tagName === 'TEXTAREA' ||
-    t.isContentEditable
-  );
-  document.body.classList.toggle('cursor-over-input', isTextInput);
-});
-document.addEventListener('mouseleave', () => {
-  dots.forEach(d => d.el.classList.remove('is-visible'));
-});
-document.addEventListener('mouseenter', () => {
-  dots.forEach(d => d.el.classList.add('is-visible'));
-});
-
-function animateDots() {
-  let targetX = mouseX;
-  let targetY = mouseY;
-  dots.forEach(d => {
-    d.x += (targetX - d.x) * d.ease;
-    d.y += (targetY - d.y) * d.ease;
-    d.el.style.transform = `translate(${d.x}px, ${d.y}px) translate(-50%, -50%)`;
-    targetX = d.x;
-    targetY = d.y;
-  });
-  requestAnimationFrame(animateDots);
-}
-animateDots();
 
 </script>
 </body>
