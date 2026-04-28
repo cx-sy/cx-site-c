@@ -253,24 +253,24 @@ textarea { resize: none; }
   align-items: flex-start;
 }
 
-/* Detail open hover: entire item goes WHITE (블랙 버전 대비) */
+/* Detail open hover: entire item goes 짙은 회색 (active와 동일) */
 .layout.is-open .project-item:hover {
-  background: #fff;
+  background: #2a2a2a;
 }
 .layout.is-open .project-item:hover .project-meta {
-  background: #fff;
+  background: #2a2a2a;
 }
 .layout.is-open .project-item:hover .project-title {
-  color: #000;
+  color: #fff;
 }
 
 /* Active item */
 .layout.is-open .project-item.is-active {
-  background: #fff;
+  background: #2a2a2a;
 }
-.project-item.is-active .project-meta { background: #fff; }
-.project-item.is-active .project-title { color: #000; }
-.project-item.is-active .tag { opacity: 0.7; }
+.project-item.is-active .project-meta { background: #2a2a2a; }
+.project-item.is-active .project-title { color: #fff; }
+.project-item.is-active .tag { opacity: 0.85; }
 
 /* Detail open: index 컬럼의 태그만 더 작고 더 딤드 (디테일 뷰 태그는 영향 없음) */
 .layout.is-open .project-item .tag {
